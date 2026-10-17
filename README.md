@@ -1,7 +1,7 @@
 ## 🧼 Cleanse: Uncertainty Estimation Approach Using Clustering-based Semantic Consistency in LLMs. 
 
 Accepted to ACL 2025 GEM workshop (oral presentation)
-[[paper link]](https://aclanthology.org/2025.gem-1.25/)
+[[paper]](https://aclanthology.org/2025.gem-1.25/)
 
 ### 1. Introduction
 

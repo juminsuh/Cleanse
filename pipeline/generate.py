@@ -7,7 +7,7 @@ import pandas as pd
 import torch
 import tqdm
 import transformers
-from accelerate import dispatch_model
+# from accelerate import dispatch_model
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -16,13 +16,13 @@ import dataeval.SQuAD as SQuAD
 import dataeval.coqa as coqa
 from models import load_model
 import utils
-import config
+# import config
 from func.metric import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str, default='llama-7b-hf')
 parser.add_argument('--dataset', type=str, default='SQuAD')
-parser.add_argument('--device', type=str, default='cuda:1')
+parser.add_argument('--device', type=str, default='cuda:0')
 parser.add_argument('--fraction_of_data_to_use', type=float, default=1.0)
 parser.add_argument('--num_generations_per_prompt', type=int, default=10)
 parser.add_argument('--temperature', type=float, default=0.5)
@@ -32,9 +32,11 @@ parser.add_argument('--top_k', type=int, default=5)
 parser.add_argument('--seed', type=int, default=2023)
 parser.add_argument('--nprocess', type=int, default=None)
 parser.add_argument('--project_ind', type=str, default='for_clustering')
+parser.add_argument('--num_shards', type=int, default=1)
+parser.add_argument('--shard_id', type=int, default=0)
 
 args = parser.parse_args()
-logInfo = open(f"{settings.GENERATION_FOLDER}/logInfo_{args.model}_{args.dataset}.txt", mode="w",encoding="utf-8")
+logInfo = open(f"{settings.GENERATION_FOLDER}/logInfo_{args.model}_{args.dataset}_{args.project_ind}.txt", mode="w",encoding="utf-8")
 
 def get_dataset_fn(data_name):
     if data_name == "SQuAD":
@@ -62,9 +64,9 @@ def get_generations(model_name:str, args, seed=1, old_sequences=None, max_num_ge
     model = load_model.load_pretrained_model(model_name)
     tokenizer = load_model.load_pretrained_tokenizer(model_name)
 
-    if model_name == "llama-13b-hf":
-        model.to(device)
-        dispatch_model(model, device_map = config.device_map)
+    # if model_name == "llama-13b-hf":
+    #     model.to(device)
+    #     dispatch_model(model, device_map = config.device_map)
     
     # for name, param in model.named_parameters():
     #     print(f"Layer {name} is on device: {param.device}")
@@ -73,6 +75,8 @@ def get_generations(model_name:str, args, seed=1, old_sequences=None, max_num_ge
     dataset = get_dataset_fn(args.dataset)(tokenizer)
     if args.fraction_of_data_to_use < 1.0:
         dataset = dataset.train_test_split(test_size=(1 - args.fraction_of_data_to_use), seed=seed)['train']
+    if args.num_shards > 1:
+        dataset = dataset.shard(num_shards=args.num_shards, index=args.shard_id, contiguous=True)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False)
 
     if old_sequences is None:

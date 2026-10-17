@@ -166,19 +166,21 @@ def compute_exact_match(prediction, truth):
 
 if __name__ == "__main__":
 
-    file_name = "/mnt/aix7101/minsuh-output/llama-7b-hf_SQuAD_for_clustering/0.pkl"
+    # file_name = "/mnt/aix7101/minsuh-output/llama-7b-hf_SQuAD_for_clustering/0.pkl"
     # file_name = "/mnt/aix7101/minsuh-output/llama-13b-hf_SQuAD_for_clustering/0.pkl"
     # file_name = "/mnt/aix7101/minsuh-output/llama-7b-hf_coqa_for_clustering_final/0.pkl"
     # file_name = "/mnt/aix7101/minsuh-output/llama-13b-hf_coqa_for_clustering/0.pkl"
-    # file_name = "/mnt/aix7101/minsuh-output/Llama-2-7b-hf_SQuAD_for_clustering_1/0.pkl"    
+    # file_name = "/home/joo/Cleanse/minsuh-output/Llama-2-7b-hf_SQuAD_for_clustering/0.pkl"    
     # file_name = "/mnt/aix7101/minsuh-output/llama2-7b-hf_coqa_for_clustering/0.pkl"
     # file_name = "/mnt/aix7101/minsuh-output/mistral-7b_SQuAD_for_clustering/0.pkl"
     # file_name = "/mnt/aix7101/minsuh-output/mistral-7b_coqa_for_clustering/0.pkl"
+    file_name = "..." # set your directory
 
     f = open(file_name, "rb")
     resultDict = pkl.load(f)
 
-    file_name_v2 = f"/mnt/aix7101/minsuh-output/llama-7b-hf_SQuAD_nli-deberta-v3-base/0.pkl"
+    # file_name_v2 = f"/home/joo/Cleanse/minsuh-output/Llama-2-7b-hf_SQuAD_nli-deberta-v3-base/0.pkl"
+    file_name_v2 = "..." # set your directory
     f_v2 = open(file_name_v2, "rb")
     resultDict_v2 = pkl.load(f_v2)
 

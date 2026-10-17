@@ -68,16 +68,13 @@ seaborn==0.13.2
 sentence-transformers==3.3.0
 sentencepiece==0.1.96
 soupsieve==2.6
-sympy==1.13.1
+sympy==1.14.0
 threadpoolctl==3.5.0
 tokenizers==0.20.3
 tomli==2.1.0
-torch==2.1.0
 torchmetrics==0.8.0
-torchvision==0.16.0
 tqdm==4.67.0
 transformers==4.46.2
-triton==2.1.0
 tzdata==2024.2
 urllib3==1.26.13
 wordcloud==1.9.4

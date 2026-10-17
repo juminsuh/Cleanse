@@ -10,7 +10,8 @@ from models import load_model
 import settings
 from settings import *
 
-OPEN_FOLDER = "/home/aix7101/minsuh/cleanse/data/datasets"
+# OPEN_FOLDER = "/home/joo/Cleanse/data/datasets"
+OPEN_FOLDER = "..." # set your directory
 
 def _save_dataset():
     save_path = f'{settings.DATA_FOLDER}/SQuAD'

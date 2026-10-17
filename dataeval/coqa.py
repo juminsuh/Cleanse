@@ -10,7 +10,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import settings as settings
 
-OPEN_FOLER = "/home/aix7101/minsuh/cleanse/data/datasets"
+# OPEN_FOLER = "/home/joo/Cleanse/data/datasets"
+OPEN_FOLER = "..." # set your directory
 
 def save_dataset():
     save_path = f'{settings.DATA_FOLDER}/coqa_dataset' 

@@ -10,7 +10,7 @@ def load_pretrained_model(model_name, torch_dtype=torch.float16):
     if model_name == 'llama-7b-hf':
         model = AutoModelForCausalLM.from_pretrained("huggyllama/llama-7b", device_map = 'auto', cache_dir=None, torch_dtype=torch_dtype) 
     if model_name == 'llama-13b-hf':
-        model = AutoModelForCausalLM.from_pretrained("huggyllama/llama-13b", cache_dir=None, torch_dtype=torch_dtype) 
+        model = AutoModelForCausalLM.from_pretrained("huggyllama/llama-13b", device_map='auto', cache_dir=None, torch_dtype=torch_dtype) 
     if model_name == 'Llama-2-7b-hf':
         model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf", 
                                                     device_map = 'auto', 

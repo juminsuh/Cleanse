@@ -52,7 +52,8 @@ Before install requirements, you should install appropriate version of torch whi
 |---|---|---|---|---|
 | Blackwell (RTX 50xx, RTX PRO 6000, B200, etc.) | 2.11.0 | 0.26.0 | 3.6.0 | 12.8+ |
 
-Please change the directory for successful implementation w/o errors. Then, run the below code which downloads the clustering model, generates multiple outputs, extracts corresponding hidden states, forms clusters based on semantic consistency, computes the Cleanse Score, and reproduces our results. 
+Please change the directory for successful implementation w/o errors. You should check `settings.py`, `dataeval/coqa.py`, `dataeval/SQuAD.py`, `func/evalFunc.py`. 
+Then, run the below code which downloads the clustering model, generates multiple outputs, extracts corresponding hidden states, forms clusters based on semantic consistency, computes the Cleanse Score, and reproduces our results. 
 
 ```
 # download the clustering model

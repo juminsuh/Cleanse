@@ -1,7 +1,7 @@
 ## 🧼 Cleanse: Uncertainty Estimation Approach Using Clustering-based Semantic Consistency in LLMs. 
 
 Accepted to ACL 2025 GEM workshop (oral presentation)
-[paper link](https://aclanthology.org/2025.gem-1.25/)
+[[paper link]](https://aclanthology.org/2025.gem-1.25/)
 
 ### 1. Introduction
 
@@ -9,12 +9,32 @@ Large language models (LLMs) can generate fluent and confident responses even wh
 
 ### 2. Method
 
-![Image](assets/pipeline.png)
-![Image](assets/image.png)
+<p align="center">
+  <img src="assets/pipeline.png" width="650">
+</p>
+
+* **Step 1. Response Sampling**: Generate multiple responses to the same input question using an LLM and extract their hidden embeddings from the last token in the middle layer of model. 
+* **Step 2. Semantic Clustering**: Group the generated responses into semantic clusters based on their meanings using NLI model rather than surface-level lexical overlap.
+* **Step 3. Intra- and Inter-Cluster Similarity**: Measure two aspects of semantic consistency using extraced hidden embeddings from Step 1.
+  * **Intra-cluster similarity**: How semantically consistent the responses are within each cluster. 
+  * **Inter-cluster similarity**: How semantically similar or distinct the responses are across different clusters.
+* **Step 4. Clustering-Based Uncertainty Estimation**: Compute an uncertainty score inspired by the Dunn Index, using the relationship between intra-cluster cohesion and inter-cluster separation. The resulting score characterizes the semantic consistency of the model's sampled responses and serves as a signal for identifying potentially unreliable answers.
+
+
+This is the example of how Cleanse estimates the uncertainty. 
+
+<p align="center">
+  <img src="assets/image.png" width="500">
+</p>
+
 
 ### 3. Experiment Results
 
-![Image](assets/exp_result.png)
+**Cleanse achieved higher AUROC than conventional uncertainty estimation baselines**, including perplexity, length-normalized entropy, and lexical similarity-based methods. 
+
+<p align="center">
+  <img src="assets/exp_result.png" width="650">
+</p>
 
 ### How to implement 
 

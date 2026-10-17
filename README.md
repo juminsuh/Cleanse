@@ -38,11 +38,28 @@ This is the example of how Cleanse estimates the uncertainty.
 
 ### How to implement 
 
-```bash
+```
+git clone https://github.com/juminsuh/Cleanse.git
+conda create -n cleanse python=3.10 -y
+conda activate cleanse
+# install appropriate version of torch for your GPU
 pip install -r requirements.txt
 ```
 
-```bash
-sh run.sh
+Before install requirements, you should install appropriate version of torch which works at your GPU. Our settings were below:
+
+| GPU Architecture | PyTorch | Torchvision | Triton | CUDA |
+|---|---|---|---|---|
+| Blackwell (RTX 50xx, RTX PRO 6000, B200, etc.) | 2.11.0 | 0.26.0 | 3.6.0 | 12.8+ |
+
+Please change the directory for successful implementation w/o errors. Then, run the below code which downloads the clustering model, generates multiple outputs, extracts corresponding hidden states, forms clusters based on semantic consistency, computes the Cleanse Score, and reproduces our results. 
+
 ```
+# download the clustering model
+python -c "from transformers import AutoTokenizer, AutoModelForSequenceClassification as M; AutoTokenizer.from_pretrained('cross-encoder/nli-deberta-v3-base'); M.from_pretrained('cross-encoder/nli-deberta-v3-base')"
+
+# run the full pipeline and evaluate results
+bash run.sh
+```
+
 Base code is provided by <https://github.com/D2I-ai/eigenscore>

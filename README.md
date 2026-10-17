@@ -1,12 +1,16 @@
-## 🧼 Cleanse
+## 🧼 Cleanse: Uncertainty Estimation Approach Using Clustering-based Semantic Consistency in LLMs. 
 
 Accepted to ACL 2025 GEM workshop (oral presentation)
+[paper link](https://aclanthology.org/2025.gem-1.25/)
 
-![Image](https://github.com/user-attachments/assets/d8d6e3b2-ee89-4119-b2f9-fc9859cf1c46)
+### 1. Introduction
 
-### Abstract
+Large language models (LLMs) can generate fluent and confident responses even when their answers are incorrect. Estimating uncertainty is therefore essential for identifying potentially unreliable generations and improving the trustworthiness of LLMs. **Cleanse** is a clustering-based uncertainty estimation method that evaluates the semantic consistency of multiple responses generated for the same question. Inspired by the **Dunn Index**, Cleanse measures the separation between semantic clusters relative to their internal cohesion, capturing uncertainty beyond token-level probabilities or lexical similarity.
 
-Despite the outstanding performance of large language models (LLMs) across various NLP tasks, hallucinations in LLMs–where LLMs generate inaccurate responses–remains as a critical problem as it can be directly connected to a crisis of building safe and reliable LLMs. Uncertainty estimation is primarily used to measure hallucination level in LLM responses so that correct and incorrect answers can be distinguished clearly. This study proposes an effective uncertainty estimation approach, Clustering-based semantic consistency (Cleanse). Cleanse quantifies the uncertainty with the proportion of the intra-cluster consistency in the total consistency between LLM hidden embeddings which contain adequate semantic information of generations, by employing clustering. The effectiveness of Cleanse for detecting hallucination is validated using four off-the-shelf models, LLaMA-7B, LLaMA-13B, LLaMA2-7B and Mistral-7B and two question-answering benchmarks, SQuAD and CoQA.
+## 2. Method
+
+![Image](assets/pipeline.png)
+![Image](assets/example.png)
 
 ### How to implement 
 
